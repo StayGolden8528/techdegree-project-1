@@ -58,9 +58,9 @@ let quotes = [
     tags: ["humour", "comedy"]
   }, 
   {
-    quote: "Get your facts first, then you can distort them as you please.",
-    source: "Life is what happens when you're busy making other plans",
-    citation: "The Beatles"
+    quote: "Everyone has a plan until they get punched in the face!",
+    source: "Mike Tyson",
+    citation: "Sports Illustrated"
   }, 
   {
     quote: "It is during our darkest moments that we must focus to see the light",
