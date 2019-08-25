@@ -72,10 +72,11 @@ function getRandomQuote () {
 };
 console.log(getRandomQuote());
 
-// Function used to add the random quote HTML into the DOM
+// Function used to add the random quote HTML into the DOM using dot notation
 // calls the getRandomQuote function and assigns it a variable
 // sets the base html to the random quote generated
-// if the random quote
+// if the random quote has a citation or and a year - add html
+//then look to see if it has the citation or year individually to add html
 function printQuote() {
   let randomQuote = getRandomQuote();
   
@@ -91,7 +92,7 @@ function printQuote() {
      };
 
     html += '</p>'; 
-
+    //targets the quotebox id to add to the page container
   let quoteBox = document.getElementById('quote-box');
   quoteBox.innerHTML = html;
 };
