@@ -14,7 +14,6 @@ project 1 - A Random Quote Generator
   Add the `year` property to at least one object in the array.
   Use console.log() to log your array of quotes to the console.
 ***/
-
 let quotes = [
   {
     quote: "If you could kick the person in the pants responsible for most of your trouble, you wouldn't sit for a month",
@@ -48,17 +47,17 @@ let quotes = [
   }
 ];
 
-
-
-
 /***
   Create the `getRandomQuote` function to:
    - Create a variable to store a random number 
    - Cse the random number to `return` a random quote object from the `quotes` array.
 ***/
+function getRandomQuote () {
+  let randomNum = Math.floor(Math.random() * quotes.length);
+  return quotes[randomNum];
 
-
-
+};
+console.log(getRandomQuote());
 
 /***
   Create the `printQuote` function to: 
@@ -72,7 +71,18 @@ let quotes = [
    - Don't forget to close that final `p` tag.
    - Set the `innerHTML` of the `quote-box` div to the HTML string. 
 ***/
+function printQuote() {
+  let holdQuote = getRandomQuote();
+  let html = "";
 
+  html += <p class = "quote"</p>
+          <p class = "source">
+          <span class = "citation"></span>
+          <span class = "year"></span>
+          </p>
+  
+
+};
 
 
 
@@ -84,5 +94,6 @@ let quotes = [
 ***/
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+let quoteBox = document.getElementById('quote-box');
 
 
