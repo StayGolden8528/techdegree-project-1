@@ -3,17 +3,11 @@ Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
 ******************************************/
 
-// Study guide for this project - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view?usp=sharing
+//global variables
 
+let html = '';
 
-/*** 
-  Create the array of quote objects and name it `quotes`.
-  Add at least five quote objects to the `quotes` array.
-  Give each quote object a `quote` and `source` property.
-  Add the `citation` property to at least one object in the array.
-  Add the `year` property to at least one object in the array.
-  Use console.log() to log your array of quotes to the console.
-***/
+//Quote array of objects to hold random quotes
 let quotes = [
   {
     quote: "If you could kick the person in the pants responsible for most of your trouble, you wouldn't sit for a month",
@@ -44,14 +38,33 @@ let quotes = [
     source: "Reba McEntire",
     citation: "brainyquotes.com",
     year: 1985
+  },
+  {
+    quote: "Love the life you live. Live the life you love.",
+    source: "Bob Marley",
+    citation: "The Whalers"
+  }, {
+    quote: "You miss 100% of the shots you don't take - Wayne Gretzky",
+    source: "Michael Scott",
+    citation: "The Office"
+  }, {
+    quote: "If you ain't first, you last",
+    source: "Ricky Bobby",
+    citation: "Talladega Nights"
+  }, {
+    quote: "Get your facts first, then you can distort them as you please.",
+    source: "Life is what happens when you're busy making other plans",
+    citation: "The Beatles"
+  }, {
+    quote: "It is during our darkest moments that we must focus to see the light",
+    source: "Aristotle",
+    citation: "Twitter"
   }
 ];
 
-/***
-  Create the `getRandomQuote` function to:
-   - Create a variable to store a random number 
-   - Cse the random number to `return` a random quote object from the `quotes` array.
-***/
+// END OF Quote array of objects to hold random quotes
+
+//Function to generate a random index number [0] - [4] that returns that quote index from the array
 function getRandomQuote () {
   let randomNum = Math.floor(Math.random() * quotes.length);
   return quotes[randomNum];
@@ -59,29 +72,28 @@ function getRandomQuote () {
 };
 console.log(getRandomQuote());
 
-/***
-  Create the `printQuote` function to: 
-   - Call the `getRandomQuote` function and assign it to a variable.
-   - Create a variable for the HTML string and set it equal to an empty string.
-   - Use the HTML template in the instructions or the markup in the index.html file, AND 
-     the random quote vairable to build your HTML string.
-   - Add the quote and source section to the HTML string.
-   - Use an if statement to check for the citation property before adding it to the HTML string.
-   - Use an if statement to check for the year property before adding it to the HTML string.
-   - Don't forget to close that final `p` tag.
-   - Set the `innerHTML` of the `quote-box` div to the HTML string. 
-***/
+// Function used to add the random quote HTML into the DOM
+// calls the getRandomQuote function and assigns it a variable
+// sets the base html to the random quote generated
+// if the random quote
 function printQuote() {
-  let holdQuote = getRandomQuote();
-  let html = "";
-
-  html += <p class = "quote"</p>
-          <p class = "source">
-          <span class = "citation"></span>
-          <span class = "year"></span>
-          </p>
+  let randomQuote = getRandomQuote();
   
+  html = '<p class = "quote">' + randomQuote.quote + '</p>';
+  html += '<p class = "source">' + randomQuote.source;
 
+  if (randomQuote.citation && randomQuote.year) {
+     html += '<span class="citation">' + randomQuote.citation + '</span><span class="year">' + randomQuote.year + '</span>'
+     } else if (randomQuote.citation) {
+       html += '<span class="citation">' + randomQuote.citation + '</span>'
+     } else if (randomQuote.year) {
+       html += '<span class="year">' + randomQuote.year + '</span></p>'
+     };
+
+    html += '</p>'; 
+
+  let quoteBox = document.getElementById('quote-box');
+  quoteBox.innerHTML = html;
 };
 
 
@@ -94,6 +106,8 @@ function printQuote() {
 ***/
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-let quoteBox = document.getElementById('quote-box');
 
+let quoteAuto = setInterval(function () {
+  printQuote();
+}, 5000);
 
