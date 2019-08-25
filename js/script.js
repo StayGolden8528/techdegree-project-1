@@ -19,7 +19,8 @@ let quotes = [
     quote: "They say marriages are made in Heaven. But so is thunder and lightning.",
     source: "Clint Eastwood",
     citation: "brainyquotes.com",
-    year: 1972
+    year: 1972,
+    tags: ["humour", "comedy"]
   },
   {
     quote: "No man has a good enough memory to be a successful liar.",
@@ -43,22 +44,29 @@ let quotes = [
     quote: "Love the life you live. Live the life you love.",
     source: "Bob Marley",
     citation: "The Whalers"
-  }, {
+  }, 
+  {
     quote: "You miss 100% of the shots you don't take - Wayne Gretzky",
     source: "Michael Scott",
-    citation: "The Office"
-  }, {
+    citation: "The Office",
+    tags: ["humour", "comedy"]
+  }, 
+  {
     quote: "If you ain't first, you last",
     source: "Ricky Bobby",
-    citation: "Talladega Nights"
-  }, {
+    citation: "Talladega Nights",
+    tags: ["humour", "comedy"]
+  }, 
+  {
     quote: "Get your facts first, then you can distort them as you please.",
     source: "Life is what happens when you're busy making other plans",
     citation: "The Beatles"
-  }, {
+  }, 
+  {
     quote: "It is during our darkest moments that we must focus to see the light",
     source: "Aristotle",
-    citation: "Twitter"
+    citation: "Twitter",
+    tags: ["philosophy", "lifestyle", "spiritual"]
   }
 ];
 
@@ -70,13 +78,30 @@ function getRandomQuote () {
   return quotes[randomNum];
 
 };
-console.log(getRandomQuote());
+
+//function to generate a random number as an rgb value
+function backgroundColor() {
+  return Math.floor(Math.random() * 256);
+}
+
+//calls the function to produce 3 values and concatenate to for rgb();
+function getRandomColor() {
+  let r = backgroundColor();
+  let g = backgroundColor();
+  let b = backgroundColor();
+
+  let rgb = 'rgb(' + r + ',' + g + ',' + b + ')';
+  //adds the value to the body property
+  document.body.style.background = rgb;
+
+};
 
 // Function used to add the random quote HTML into the DOM using dot notation
 // calls the getRandomQuote function and assigns it a variable
 // sets the base html to the random quote generated
 // if the random quote has a citation or and a year - add html
 //then look to see if it has the citation or year individually to add html
+
 function printQuote() {
   let randomQuote = getRandomQuote();
   
@@ -84,31 +109,25 @@ function printQuote() {
   html += '<p class = "source">' + randomQuote.source;
 
   if (randomQuote.citation && randomQuote.year) {
-     html += '<span class="citation">' + randomQuote.citation + '</span><span class="year">' + randomQuote.year + '</span>'
+     html += '<span class= "citation">' + randomQuote.citation + '</span><span class="year">' + randomQuote.year + '</span>';
      } else if (randomQuote.citation) {
-       html += '<span class="citation">' + randomQuote.citation + '</span>'
+       html += '<span class= "citation">' + randomQuote.citation + '</span>';
      } else if (randomQuote.year) {
-       html += '<span class="year">' + randomQuote.year + '</span></p>'
+       html += '<span class= "year">' + randomQuote.year + '</span></p>';
+     } else if (randomQuote.tags) {
+       html+= '<span class= "tags">' + randomQuote.tags.join(" | ") + '</span>';
      };
-
+    
     html += '</p>'; 
     //targets the quotebox id to add to the page container
   let quoteBox = document.getElementById('quote-box');
   quoteBox.innerHTML = html;
 };
 
-
-
-/***
-  When the "Show another quote" button is clicked, the event listener 
-  below will be triggered, and it will call, or "invoke", the `printQuote` 
-  function. So do not make any changes to the line of code below this 
-  comment.
-***/
-
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-
+//changes the quote and background color every 5 seconds
 let quoteAuto = setInterval(function () {
   printQuote();
+  getRandomColor();
 }, 5000);
 
