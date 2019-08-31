@@ -107,17 +107,14 @@ function printQuote() {
   
   html = '<p class = "quote">' + randomQuote.quote + '</p>';
   html += '<p class = "source">' + randomQuote.source;
+  html += '<span class = "citation" > ' + randomQuote.citation + ' </span>';
 
-  if (randomQuote.citation && randomQuote.year) {
-     html += '<span class= "citation">' + randomQuote.citation + '</span><span class="year">' + randomQuote.year + '</span>';
-     } else if (randomQuote.citation) {
-       html += '<span class= "citation">' + randomQuote.citation + '</span>';
-     } else if (randomQuote.year) {
-       html += '<span class= "year">' + randomQuote.year + '</span></p>';
-     } else if (randomQuote.tags) {
-       html+= '<span class= "tags">' + randomQuote.tags.join(" | ") + '</span>';
+  if (randomQuote.tags) {
+     html += '<span class= "tags">' + randomQuote.tags.join(" | ") + '</span>';
      };
-    
+  if (randomQuote.year) {
+      html += '<span class= "year">' + randomQuote.year + '</span>'
+  }   
     html += '</p>'; 
     //targets the quotebox id to add to the page container
   let quoteBox = document.getElementById('quote-box');
@@ -125,6 +122,7 @@ function printQuote() {
 };
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+document.getElementById('loadQuote').addEventListener("click", getRandomColor, false);
 //changes the quote and background color every 5 seconds
 let quoteAuto = setInterval(function () {
   printQuote();
