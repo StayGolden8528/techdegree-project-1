@@ -121,8 +121,13 @@ function printQuote() {
   quoteBox.innerHTML = html;
 };
 
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-document.getElementById('loadQuote').addEventListener("click", getRandomColor, false);
+let loadQuote = document.getElementById('loadQuote');
+
+loadQuote.addEventListener('click', () => {
+  printQuote();
+  getRandomColor();
+
+});
 //changes the quote and background color every 5 seconds
 let quoteAuto = setInterval(function () {
   printQuote();
